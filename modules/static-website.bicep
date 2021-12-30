@@ -1,8 +1,7 @@
 targetScope = 'resourceGroup'
 
 param staticWebsiteName string
-
-var location = resourceGroup().location
+param location string
 
 resource staticWebsite 'Microsoft.Web/staticSites@2021-02-01' = {
   name: staticWebsiteName

@@ -44,5 +44,6 @@ module staticWebsiteStorage './modules/static-website.bicep' = {
   scope: resourceGroup
   params: {
     staticWebsiteName: 'adfcsvcosmos${environment}'
+    location: 'eastasia' /* Static Websites Support limited regions */
   }
 }
