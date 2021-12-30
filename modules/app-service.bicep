@@ -6,7 +6,7 @@ param virtualNetworkName string
 
 var location = resourceGroup().location
 
-resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
+resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
   name: virtualNetworkName
 }
 
