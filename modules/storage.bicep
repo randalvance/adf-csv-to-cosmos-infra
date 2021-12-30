@@ -1,6 +1,6 @@
 targetScope = 'resourceGroup'
 
-param storageAccountName string
+param accountName string
 param virtualNetworkName string
 
 var location = resourceGroup().location
@@ -10,7 +10,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
 }
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
-  name: storageAccountName
+  name: accountName
   location: location
   sku: {
     name: 'Standard_LRS'
