@@ -1,0 +1,24 @@
+name: $(Build.DefinitionName)-$(Date:yyyyMMdd)-$(BuildID)
+
+trigger: none
+
+variables:
+  - name: ServiceConnection
+    value: AzureServiceConnection
+  - name: Location
+    value: japaneast
+
+pool:
+  vmImage: ubuntu-latest
+
+stages:
+  - stage: Deployment_DEV
+    displayName: Deployment - DEV
+    jobs:
+      - deployment: deployment
+        environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: './steps/deploy-bicep.yml'
