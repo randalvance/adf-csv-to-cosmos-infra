@@ -1,11 +1,9 @@
-targetScope = 'resourceGroup'
-
 param vnetName string
 param location string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
+resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
   name: vnetName
-  location: location
+  location: resourceGroup().location
   properties: {
     addressSpace: {
       addressPrefixes: [
@@ -51,7 +49,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   }
 }
 
-resource storage 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
+resource storage 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   parent: vnet
   name: 'storage'
   properties: {
@@ -76,7 +74,7 @@ resource storage 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
   }
 }
 
-resource web 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
+resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   parent: vnet
   name: 'web'
   properties: {
