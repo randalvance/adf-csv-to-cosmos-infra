@@ -1,8 +1,7 @@
 targetScope = 'resourceGroup'
 
 param vnetName string
-
-var location = resourceGroup().location
+param location string
 
 resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   name: vnetName
