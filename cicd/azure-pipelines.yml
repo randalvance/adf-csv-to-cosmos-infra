@@ -14,9 +14,25 @@ pool:
 stages:
   - stage: Deployment_DEV
     displayName: Deployment - DEV
+    variables:
+      - name: Environment
+        value: dev
     jobs:
-      - deployment: deployment
+      - deployment: Deployment
         environment: dev
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - template: './steps/deploy-bicep.yml'
+  - stage: Deployment_DEV
+    displayName: Deployment - DEV
+    variables:
+      - name: Environment
+        value: staging
+    jobs:
+      - deployment: Deployment
+        environment: staging
         strategy:
           runOnce:
             deploy:
