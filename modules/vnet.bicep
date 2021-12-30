@@ -1,3 +1,5 @@
+targetScope = 'resourceGroup'
+
 param vnetName string
 
 var location = resourceGroup().location

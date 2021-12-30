@@ -60,7 +60,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
       requestTracingEnabled: true
       ipSecurityRestrictions: [
         {
-          vnetSubnetResourceId: vnet.properties.subnets[0].id
+          vnetSubnetResourceId: vnet.properties.subnets[1].id
           action: 'Allow'
           tag: 'Default'
           priority: 100

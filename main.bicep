@@ -16,7 +16,7 @@ module vnet  './modules/vnet.bicep' = {
   name: '${deploymentName}-vnet'
   scope: resourceGroup
   params: {
-    vnetName: 'vnet-${projectName}'
+    vnetName: 'vnet-${projectName}-${environment}'
   }
 }
 
