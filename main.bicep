@@ -17,6 +17,15 @@ module vnet  './modules/vnet.bicep' = {
   scope: resourceGroup
   params: {
     vnetName: 'vnet-${projectName}'
-    location: location
+  }
+}
+
+module appservice './modules/app-service.bicep' = {
+  name: '${deploymentName}-appservice'
+  scope: resourceGroup
+  params: {
+    appServicePlanName: '${projectName}=${environment}-plan'
+    appServiceName: '${projectName}-${environment}'
+    virtualNetworkName: vnet.outputs.virtualNetworkName
   }
 }

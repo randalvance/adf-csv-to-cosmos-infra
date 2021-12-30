@@ -1,7 +1,8 @@
 param vnetName string
-param location string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
+var location = resourceGroup().location
+
+resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   name: vnetName
   location: location
   properties: {
@@ -49,7 +50,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
   }
 }
 
-resource storage 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
+resource storage 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
   parent: vnet
   name: 'storage'
   properties: {
@@ -74,7 +75,7 @@ resource storage 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   }
 }
 
-resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
+resource web 'Microsoft.Network/virtualNetworks/subnets@2021-05-01' = {
   parent: vnet
   name: 'web'
   properties: {
@@ -84,3 +85,5 @@ resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
     privateLinkServiceNetworkPolicies: 'Enabled'
   }
 }
+
+output virtualNetworkName string = vnet.name
