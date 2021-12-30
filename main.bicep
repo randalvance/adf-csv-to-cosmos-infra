@@ -43,6 +43,6 @@ module staticWebsiteStorage './modules/static-website.bicep' = {
   name: '${deploymentName}-static-website'
   scope: resourceGroup
   params: {
-    accountName: 'adfcsvcosmosweb${environment}'
+    staticWebsiteName: 'adfcsvcosmos${environment}'
   }
 }
