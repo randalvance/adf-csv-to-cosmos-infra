@@ -10,11 +10,11 @@ stages:
     displayName: Deployment - DEV
     variables:
       - group: dev
-      - name: Environment
-        value: dev
     jobs:
       - deployment: deployment
         environment: $(Environment)
+        variables:
+          - group: dev
         strategy:
           runOnce:
             deploy:
