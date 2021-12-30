@@ -38,3 +38,11 @@ module storage './modules/storage.bicep' = {
     virtualNetworkName: vnet.outputs.virtualNetworkName
   }
 }
+
+module staticWebsiteStorage './modules/static-website.bicep' = {
+  name: '${deploymentName}-static-website'
+  scope: resourceGroup
+  params: {
+    accountName: 'adfcsvcosmosweb${environment}'
+  }
+}
