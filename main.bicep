@@ -35,5 +35,6 @@ module storage './modules/storage.bicep' = {
   scope: resourceGroup
   params: {
     storageAccountName: 'adfcsvcosmos${environment}'
+    virtualNetworkName: vnet.outputs.virtualNetworkName
   }
 }

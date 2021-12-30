@@ -1,8 +1,13 @@
 targetScope = 'resourceGroup'
 
 param storageAccountName string
+param virtualNetworkName string
 
 var location = resourceGroup().location
+
+resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
+  name: virtualNetworkName
+}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: storageAccountName
@@ -16,7 +21,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
     allowSharedKeyAccess: false
     networkAcls: {
       bypass: 'None'
-      virtualNetworkRules: []
+      virtualNetworkRules: [
+        {
+          id: vnet.properties.subnets[1].id
+          action: 'Allow'
+          state: 'Succeeded'
+        }
+      ]
       ipRules: []
       defaultAction: 'Deny'
     }
