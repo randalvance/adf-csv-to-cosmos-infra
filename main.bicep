@@ -24,8 +24,16 @@ module appservice './modules/app-service.bicep' = {
   name: '${deploymentName}-appservice'
   scope: resourceGroup
   params: {
-    appServicePlanName: '${projectName}-${environment}-plan'
+    appServicePlanName: '${projectName}-plan-${environment}'
     appServiceName: '${projectName}-${environment}'
     virtualNetworkName: vnet.outputs.virtualNetworkName
+  }
+}
+
+module storage './modules/storage.bicep' = {
+  name: '${deploymentName}-storage'
+  scope: resourceGroup
+  params: {
+    storageAccountName: 'adfcsvcosmos${environment}'
   }
 }
