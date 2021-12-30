@@ -24,7 +24,7 @@ module appservice './modules/app-service.bicep' = {
   name: '${deploymentName}-appservice'
   scope: resourceGroup
   params: {
-    appServicePlanName: '${projectName}=${environment}-plan'
+    appServicePlanName: '${projectName}-${environment}-plan'
     appServiceName: '${projectName}-${environment}'
     virtualNetworkName: vnet.outputs.virtualNetworkName
   }
