@@ -32,6 +32,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     httpsOnly: true
     serverFarmId: appServicePlan.id
     clientAffinityEnabled: false
+    virtualNetworkSubnetId: subnetId
   }
 
   resource appsettingsConfig 'config' = {
@@ -62,13 +63,6 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     properties: {
       siteName: appServiceName
       hostNameType: 'Verified'
-    }
-  }
-
-  resource virtualNetwork 'virtualNetworkConnections' = {
-    name: 'virtualNetwork'
-    properties: {
-      vnetResourceId: subnetId
     }
   }
 }
