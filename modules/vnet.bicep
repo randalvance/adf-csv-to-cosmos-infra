@@ -94,8 +94,7 @@ resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
       {
         name: 'delegation'
         properties: {
-          serviceName: 'Microsoft.Web/serverfarms'
-          
+          serviceName: 'Microsoft.Web/serverFarms'
         }
       }
     ]
