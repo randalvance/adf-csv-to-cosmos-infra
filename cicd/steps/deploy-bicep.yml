@@ -4,6 +4,7 @@ parameters:
 steps:
   - checkout: self                
   - task: AzureCLI@2
+    displayName: Deploy Bicep
     inputs:
       azureSubscription: $(ServiceConnection)
       scriptType: bash
@@ -16,6 +17,7 @@ steps:
           --parameters environment=$(Environment) \
           --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment)
   - task: AzureCLI@2
+    displayName: Enable Static Website
     inputs:
       azureSubscription: $(ServiceConnection)
       scriptType: bash
