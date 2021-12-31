@@ -23,7 +23,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
       bypass: 'None'
       virtualNetworkRules: [
         {
-          id: vnet.properties.subnets[1].id
+          id: vnet.properties.subnets[0].id
           action: 'Allow'
           state: 'Succeeded'
         }
