@@ -69,11 +69,10 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     }
   }
 
-  resource virutalNetwork 'virtualNetworkConnections' = {
-    name: guid('web')
+  resource virtualNetwork 'networkConfig' = {
+    name: 'virtualNetwork'
     properties: {
-      vnetResourceId: vnet.properties.subnets[0].id
-      isSwift: true
+      subnetResourceId: vnet.properties.subnets[0].id
     }
   }
 }
