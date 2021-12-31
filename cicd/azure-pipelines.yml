@@ -26,7 +26,7 @@ stages:
               steps:
                 - template: './steps/deploy-bicep.yml'
                   parameters:
-                    storageAccountName: adfcsvcosmosdev
+                    storageAccountName: adfcsvcosmoswebdev
   - stage: Deployment_Staging
     displayName: Staging
     variables:
@@ -41,4 +41,4 @@ stages:
               steps:
                 - template: './steps/deploy-bicep.yml'
                   parameters:
-                    storageAccountName: adfcsvcosmosstg
+                    storageAccountName: adfcsvcosmoswebstg
