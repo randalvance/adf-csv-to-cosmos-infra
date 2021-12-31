@@ -48,13 +48,9 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     properties: {
       alwaysOn: true
       detailedErrorLoggingEnabled: true
-      ftpsState: 'FtpsOnly'
       http20Enabled: true
-      httpLoggingEnabled: true
-      netFrameworkVersion: 'v4.0'
       linuxFxVersion: 'DOTNETCORE|6.0'
-      minTlsVersion: '1.2'
-      requestTracingEnabled: true
+      vnetRouteAllEnabled: true
     }
   }
 
