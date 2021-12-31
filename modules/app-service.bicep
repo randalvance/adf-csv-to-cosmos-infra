@@ -55,24 +55,9 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
       http20Enabled: true
       httpLoggingEnabled: true
       netFrameworkVersion: 'v4.0'
-      linuxFxVersion: 'DOTNETCORE|5.0'
+      linuxFxVersion: 'DOTNETCORE|6.0'
       minTlsVersion: '1.2'
       requestTracingEnabled: true
-      ipSecurityRestrictions: [
-        {
-          vnetSubnetResourceId: vnet.properties.subnets[0].id
-          action: 'Allow'
-          tag: 'Default'
-          priority: 100
-        }
-        {
-          ipAddress: 'Any'
-          action: 'Deny'
-          priority: 2147483647
-          name: 'Deny all'
-          description: 'Deny all access'
-        }
-      ]
     }
   }
 
@@ -81,6 +66,14 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     properties: {
       siteName: appServiceName
       hostNameType: 'Verified'
+    }
+  }
+
+  resource virutalNetwork 'virtualNetworkConnections' = {
+    name: guid('web')
+    properties: {
+      vnetResourceId: vnet.properties.subnets[0].id
+      isSwift: true
     }
   }
 }
