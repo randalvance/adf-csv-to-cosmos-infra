@@ -65,10 +65,10 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
     }
   }
 
-  resource virtualNetwork 'networkConfig' = {
+  resource virtualNetwork 'virtualNetworkConnections' = {
     name: 'virtualNetwork'
     properties: {
-      subnetResourceId: subnetId
+      vnetResourceId: subnetId
     }
   }
 }
