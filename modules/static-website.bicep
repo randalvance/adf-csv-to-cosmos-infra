@@ -1,17 +1,17 @@
 targetScope = 'resourceGroup'
 
-param staticWebsiteName string
-param location string
+param accountName string
 
-resource staticWebsite 'Microsoft.Web/staticSites@2021-02-01' = {
-  name: staticWebsiteName
+var location = resourceGroup().location
+
+resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
+  name: accountName
   location: location
   sku: {
-    name: 'Free'
-    tier: 'Free'
+    name: 'Standard_LRS'
   }
+  kind: 'StorageV2'
   properties: {
-    stagingEnvironmentPolicy: 'Enabled'
-    allowConfigFileUpdates: true
+    allowBlobPublicAccess: true
   }
 }

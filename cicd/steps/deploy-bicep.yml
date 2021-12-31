@@ -1,3 +1,6 @@
+parameters:
+  - name: storageAccountName
+    type: string
 steps:
   - checkout: self                
   - task: AzureCLI@2
@@ -12,3 +15,12 @@ steps:
           --name adf-csv-to-cosmos-$(Build.BuildId)-$(Environment) \
           --parameters environment=$(Environment) \
           --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment)
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: $(ServiceConnection)
+      scriptType: bash
+      scriptLocation: inlineScript
+      inlineScript: |
+        az storage blob service-properties update \
+          --account-name ${{ parameters.storageAccountName }} \
+          --index-document index.html
