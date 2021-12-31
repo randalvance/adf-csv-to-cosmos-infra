@@ -31,10 +31,10 @@ stages:
     displayName: Staging
     variables:
       - name: Environment
-        value: staging
+        value: stg
     jobs:
       - deployment: Deployment
-        environment: stg
+        environment: staging
         strategy:
           runOnce:
             deploy:
