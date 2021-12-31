@@ -46,3 +46,12 @@ module staticWebsiteStorage './modules/static-website.bicep' = {
     accountName: 'adfcsvcosmosweb${environment}'
   }
 }
+
+module dataFactory './modules/datafactory.bicep' = {
+  name: '${deploymentName}-data-factory'
+  scope: resourceGroup
+  params: {
+    dataFactoryName: 'df-${projectName}-${environment}'
+    environment: environment
+  }
+}
