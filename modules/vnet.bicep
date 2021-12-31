@@ -96,3 +96,5 @@ resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
 }
 
 output virtualNetworkName string = vnet.name
+output webSubnetId string = web.id
+output storageSubnetId string = storage.id

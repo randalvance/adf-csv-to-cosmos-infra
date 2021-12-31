@@ -1,13 +1,9 @@
 targetScope = 'resourceGroup'
 
 param accountName string
-param virtualNetworkName string
+param subnetId string
 
 var location = resourceGroup().location
-
-resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
-  name: virtualNetworkName
-}
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
   name: accountName
@@ -23,7 +19,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
       bypass: 'None'
       virtualNetworkRules: [
         {
-          id: vnet.properties.subnets[0].id
+          id: subnetId
           action: 'Allow'
           state: 'Succeeded'
         }

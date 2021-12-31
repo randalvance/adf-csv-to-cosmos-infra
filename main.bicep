@@ -26,7 +26,7 @@ module appservice './modules/app-service.bicep' = {
   params: {
     appServicePlanName: '${projectName}-plan-${environment}'
     appServiceName: '${projectName}-${environment}'
-    virtualNetworkName: vnet.outputs.virtualNetworkName
+    subnetId: vnet.outputs.webSubnetId
   }
 }
 
@@ -35,7 +35,7 @@ module storage './modules/storage.bicep' = {
   scope: resourceGroup
   params: {
     accountName: 'adfcsvcosmos${environment}'
-    virtualNetworkName: vnet.outputs.virtualNetworkName
+    subnetId: vnet.outputs.storageSubnetId
   }
 }
 

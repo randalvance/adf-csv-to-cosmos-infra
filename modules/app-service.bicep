@@ -2,13 +2,9 @@ targetScope = 'resourceGroup'
 
 param appServicePlanName string
 param appServiceName string
-param virtualNetworkName string
+param subnetId string
 
 var location = resourceGroup().location
-
-resource vnet 'Microsoft.Network/virtualNetworks@2021-05-01' existing = {
-  name: virtualNetworkName
-}
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: appServicePlanName
@@ -72,7 +68,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   resource virtualNetwork 'networkConfig' = {
     name: 'virtualNetwork'
     properties: {
-      subnetResourceId: vnet.properties.subnets[1].id
+      subnetResourceId: subnetId
     }
   }
 }
