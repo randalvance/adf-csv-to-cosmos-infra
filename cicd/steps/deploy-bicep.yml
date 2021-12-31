@@ -24,5 +24,6 @@ steps:
       scriptLocation: inlineScript
       inlineScript: |
         az storage blob service-properties update \
+          --auth-mode login \
           --account-name ${{ parameters.storageAccountName }} \
           --index-document index.html
