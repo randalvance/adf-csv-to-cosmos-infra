@@ -20,22 +20,23 @@ module vnet  './modules/vnet.bicep' = {
   }
 }
 
-module appservice './modules/app-service.bicep' = {
-  name: '${deploymentName}-appservice'
-  scope: resourceGroup
-  params: {
-    appServicePlanName: '${projectName}-plan-${environment}'
-    appServiceName: '${projectName}-${environment}'
-    subnetId: vnet.outputs.webSubnetId
-  }
-}
-
 module storage './modules/storage.bicep' = {
   name: '${deploymentName}-storage'
   scope: resourceGroup
   params: {
     accountName: 'adfcsvcosmos${environment}'
     subnetId: vnet.outputs.storageSubnetId
+  }
+}
+
+module appservice './modules/app-service.bicep' = {
+  name: '${deploymentName}-appservice'
+  scope: resourceGroup
+  params: {
+    appServicePlanName: '${projectName}-plan-${environment}'
+    appServiceName: '${projectName}-${environment}'
+    storageAccountName: storage.outputs.accountName
+    subnetId: vnet.outputs.webSubnetId
   }
 }
 

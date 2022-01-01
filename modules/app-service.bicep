@@ -2,9 +2,14 @@ targetScope = 'resourceGroup'
 
 param appServicePlanName string
 param appServiceName string
+param storageAccountName string
 param subnetId string
 
 var location = resourceGroup().location
+
+resource storage 'Microsoft.Storage/storageAccounts@2021-06-01' existing = {
+  name: storageAccountName
+}
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: appServicePlanName
@@ -38,8 +43,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   resource appsettingsConfig 'config' = {
     name: 'appsettings'
     properties: {
-      COSMOS_ENDPOINT: ''
-      STORAGE_BLOB_ENDPOINT: ''
+      BlobStorageEndpoint: storage.properties.primaryEndpoints.blob
     }
   }
 
