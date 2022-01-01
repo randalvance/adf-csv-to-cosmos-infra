@@ -25,7 +25,7 @@ module storage './modules/storage.bicep' = {
   scope: resourceGroup
   params: {
     accountName: 'adfcsvcosmos${environment}'
-    subnetId: vnet.outputs.storageSubnetId
+    subnetId: vnet.outputs.webSubnetId
   }
 }
 
