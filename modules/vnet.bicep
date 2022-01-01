@@ -60,7 +60,10 @@ resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
         }
       }
     ]
-  }
+  },
+  dependsOn: [
+    storage
+  ]
 }
 
 output virtualNetworkName string = vnet.name
