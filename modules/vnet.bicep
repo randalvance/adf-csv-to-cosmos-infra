@@ -20,12 +20,6 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
           addressPrefix: '10.1.2.0/24'
           serviceEndpoints: [
             {
-              service: 'Microsoft.Storage'
-              locations: [
-                location
-              ]
-            }
-            {
               service: 'Microsoft.AzureCosmosDB'
               locations: [
                 '*'
@@ -40,6 +34,12 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
         properties: {
           addressPrefix: '10.1.1.0/24'
           serviceEndpoints: [
+            {
+              service: 'Microsoft.Storage'
+              locations: [
+                location
+              ]
+            }
             {
               service: 'Microsoft.Web'
               locations: [
