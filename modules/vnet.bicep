@@ -15,22 +15,7 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
     }
     subnets: [
       {
-        name: 'storage'
-        properties: {
-          addressPrefix: '10.1.2.0/24'
-          serviceEndpoints: [
-            {
-              service: 'Microsoft.AzureCosmosDB'
-              locations: [
-                '*'
-              ]
-            }
-          ]
-          delegations: []
-        }
-      }
-      {
-        name: 'web'
+        name: 'default'
         properties: {
           addressPrefix: '10.1.1.0/24'
           serviceEndpoints: [
@@ -38,6 +23,12 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
               service: 'Microsoft.Storage'
               locations: [
                 location
+              ]
+            }
+            {
+              service: 'Microsoft.AzureCosmosDB'
+              locations: [
+                '*'
               ]
             }
             {
@@ -62,5 +53,4 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-11-01' = {
 }
 
 output virtualNetworkName string = vnet.name
-output storageSubnetId string = vnet.properties.subnets[0].id
-output webSubnetId string = vnet.properties.subnets[1].id
+output subnetId string = vnet.properties.subnets[0].id
