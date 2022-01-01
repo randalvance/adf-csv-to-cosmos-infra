@@ -15,7 +15,8 @@ steps:
           --template-file 'main.bicep' \
           --name adf-csv-to-cosmos-$(Build.BuildId)-$(Environment) \
           --parameters environment=$(Environment) \
-          --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment)
+          --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment) \
+          --parameters developerObjectGroupId=$(DeveloperGroupObjectId)
   - task: AzureCLI@2
     displayName: Enable Static Website
     inputs:

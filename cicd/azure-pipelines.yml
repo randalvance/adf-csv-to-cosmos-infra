@@ -4,6 +4,7 @@ trigger:
   - main
 
 variables:
+  - group: globals
   - name: ServiceConnection
     value: AzureServiceConnection
   - name: Location

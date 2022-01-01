@@ -2,6 +2,7 @@ targetScope = 'subscription'
 
 param environment string
 param resourceGroupName string
+param developerGroupObjectId string
 
 var projectName = 'adf-csv-to-cosmos'
 var deploymentName = deployment().name
@@ -26,6 +27,7 @@ module storage './modules/storage.bicep' = {
   params: {
     accountName: 'adfcsvcosmos${environment}'
     subnetId: vnet.outputs.subnetId
+    developerGroupObjectId: developerGroupObjectId
   }
 }
 
