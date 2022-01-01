@@ -34,7 +34,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
     name: 'default'
 
     resource container 'containers' = {
-      name: 'input'
+      name: 'uploaded'
       properties: {
         publicAccess: 'None'
       }
