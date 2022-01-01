@@ -72,8 +72,6 @@ resource storage 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
       }
     ]
     delegations: []
-    privateEndpointNetworkPolicies: 'Enabled'
-    privateLinkServiceNetworkPolicies: 'Enabled'
   }
 }
 
@@ -82,6 +80,14 @@ resource web 'Microsoft.Network/virtualNetworks/subnets@2020-11-01' = {
   name: 'web'
   properties: {
     addressPrefix: '10.1.1.0/24'
+    serviceEndpoints: [
+      {
+        service: 'Microsoft.Web'
+        locations: [
+          '*'
+        ]
+      }
+    ]
     delegations: [
       {
         name: 'delegation'

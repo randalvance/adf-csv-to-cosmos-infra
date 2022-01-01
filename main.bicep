@@ -39,6 +39,14 @@ module storage './modules/storage.bicep' = {
   }
 }
 
+module cosmosdb './modules/cosmosdb.bicep' = {
+  name: '${deploymentName}-cosmos'
+  scope: resourceGroup
+  params: {
+    accountName: 'cdb-${projectName}-${environment}'
+  }
+}
+
 module staticWebsiteStorage './modules/static-website.bicep' = {
   name: '${deploymentName}-static-website'
   scope: resourceGroup
