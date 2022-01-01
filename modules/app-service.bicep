@@ -11,6 +11,10 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-06-01' existing = {
   name: storageAccountName
 }
 
+resource storageBlobDataContributorRole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
+  name: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe' /* Guid for the Blob Contributor Role */
+}
+
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
   name: appServicePlanName
   location: location
@@ -64,5 +68,14 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
       siteName: appServiceName
       hostNameType: 'Verified'
     }
+  }
+}
+
+resource storageRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
+  scope: storage
+  name: guid(storage.name, storageBlobDataContributorRole.name, appService.name)
+  properties: {
+    roleDefinitionId: storageBlobDataContributorRole.id
+    principalId: appService.identity.principalId
   }
 }
