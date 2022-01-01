@@ -71,7 +71,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   }
 }
 
-resource storageRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-10-01-preview' = {
+resource storageRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
   scope: storage
   name: guid(storage.name, storageBlobDataContributorRole.name, appService.name)
   properties: {
