@@ -3,6 +3,7 @@ targetScope = 'subscription'
 param environment string
 param resourceGroupName string
 param developerGroupObjectId string
+param adApplicationObjectId string
 
 var projectName = 'adf-csv-to-cosmos'
 var deploymentName = deployment().name
@@ -64,6 +65,7 @@ module dataFactory './modules/datafactory.bicep' = {
   params: {
     dataFactoryName: 'df-${projectName}-${environment}'
     storageAccountName: storage.outputs.accountName
+    adApplicationObjectId: adApplicationObjectId
     environment: environment
   }
 }
