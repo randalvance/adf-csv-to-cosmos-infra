@@ -10,20 +10,20 @@ resource account 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
   location: location
   kind: 'GlobalDocumentDB'
   properties: {
-    publicNetworkAccess: 'Disabled'
+    publicNetworkAccess: 'Enabled'
     databaseAccountOfferType: 'Standard'
     locations: [
       {
         locationName: location
       }
     ]
-    isVirtualNetworkFilterEnabled: true
-    virtualNetworkRules: [
-      {
-        id: subnetId
-        ignoreMissingVNetServiceEndpoint: false
-      }
-    ]
+    // isVirtualNetworkFilterEnabled: true
+    // virtualNetworkRules: [
+    //   {
+    //     id: subnetId
+    //     ignoreMissingVNetServiceEndpoint: false
+    //   }
+    // ]
   }
   identity: {
     type: 'SystemAssigned'
