@@ -17,7 +17,6 @@ stages:
   - stage: Deployment_DEV
     displayName: Dev
     variables:
-      - group: dev
       - name: Environment
         value: dev
     jobs:
