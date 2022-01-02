@@ -57,13 +57,23 @@ resource storageBlobContributorRoleAssignment 'Microsoft.Authorization/roleAssig
   }
 }
 
-resource cosmosProdDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
+resource cosmosAdfDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
   parent: cosmosdbAccount
   name: guid(cosmosDataContributorRoleName, dataFactoryName)
   properties: {
     roleDefinitionId: cosmosDataContributorRole.id
     scope: cosmosdbAccount.id
     principalId: factory.identity.principalId
+  }
+}
+
+resource cosmosSpDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
+  parent: cosmosdbAccount
+  name: guid(cosmosDataContributorRoleName, dataFactoryName)
+  properties: {
+    roleDefinitionId: cosmosDataContributorRole.id
+    scope: cosmosdbAccount.id
+    principalId: applicationObjectId
   }
 }
 

@@ -21,7 +21,7 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2021-06-01' = {
     allowBlobPublicAccess: false
     allowSharedKeyAccess: false
     networkAcls: {
-      bypass: 'None'
+      bypass: 'AzureServices'
       virtualNetworkRules: [
         {
           id: subnetId
