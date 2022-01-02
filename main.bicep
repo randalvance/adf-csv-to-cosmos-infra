@@ -7,6 +7,7 @@ param tenantId string
 param applicationId string
 param clientSecret string
 param applicationObjectId string
+param subscriptionId string
 
 var projectName = 'adf-csv-to-cosmos'
 var deploymentName = deployment().name
@@ -49,6 +50,7 @@ module appservice './modules/app-service.bicep' = {
     tenantId: tenantId
     applicationId: applicationId
     clientSecret: clientSecret
+    subscriptionId: subscriptionId
   }
 }
 
