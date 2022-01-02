@@ -60,6 +60,7 @@ module cosmosdb './modules/cosmosdb.bicep' = {
   scope: resourceGroup
   params: {
     accountName: cosmosDbAccountName
+    subnetId: vnet.outputs.subnetId
   }
 }
 
