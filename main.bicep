@@ -63,6 +63,7 @@ module dataFactory './modules/datafactory.bicep' = {
   scope: resourceGroup
   params: {
     dataFactoryName: 'df-${projectName}-${environment}'
+    storageAccountName: storage.outputs.accountName
     environment: environment
   }
 }
