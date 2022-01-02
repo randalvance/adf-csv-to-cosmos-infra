@@ -3,10 +3,15 @@ targetScope = 'subscription'
 param environment string
 param resourceGroupName string
 param developerGroupObjectId string
+param tenantId string
+param applicationId string
+param clientSecret string
 
 var projectName = 'adf-csv-to-cosmos'
 var deploymentName = deployment().name
 var location = deployment().location
+
+var dataFactoryName = 'df-${projectName}-${environment}'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
@@ -39,6 +44,10 @@ module appservice './modules/app-service.bicep' = {
     appServiceName: '${projectName}-${environment}'
     storageAccountName: storage.outputs.accountName
     subnetId: vnet.outputs.subnetId
+    dataFactoryName: dataFactoryName
+    tenantId: tenantId
+    applicationId: applicationId
+    clientSecret: clientSecret
   }
 }
 
@@ -62,7 +71,7 @@ module dataFactory './modules/datafactory.bicep' = {
   name: '${deploymentName}-data-factory'
   scope: resourceGroup
   params: {
-    dataFactoryName: 'df-${projectName}-${environment}'
+    dataFactoryName: dataFactoryName
     storageAccountName: storage.outputs.accountName
     groupObjectId: developerGroupObjectId
     environment: environment

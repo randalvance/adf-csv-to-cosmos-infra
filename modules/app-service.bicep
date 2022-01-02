@@ -4,6 +4,10 @@ param appServicePlanName string
 param appServiceName string
 param storageAccountName string
 param subnetId string
+param dataFactoryName string
+param tenantId string
+param applicationId string
+param clientSecret string
 
 var location = resourceGroup().location
 
@@ -47,6 +51,12 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
   resource appsettingsConfig 'config' = {
     name: 'appsettings'
     properties: {
+      AzureSubscriptionId: subscription().id
+      AzureDataFactory__ResourceGroup: resourceGroup().name
+      AzureDataFactory__DataFactoryName: dataFactoryName
+      AzureClientCredentials__TenantId: tenantId
+      AzureClientCredentials__ApplicationId: applicationId
+      AzureClientCredentials__ClientSecret: clientSecret
       BlobStorageEndpoint: storage.properties.primaryEndpoints.blob
     }
   }

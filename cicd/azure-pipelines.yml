@@ -17,6 +17,7 @@ stages:
   - stage: Deployment_DEV
     displayName: Dev
     variables:
+      - group: dev
       - name: Environment
         value: dev
     jobs:
@@ -32,6 +33,7 @@ stages:
   - stage: Deployment_Staging
     displayName: Staging
     variables:
+      - group: staging
       - name: Environment
         value: stg
     jobs:
