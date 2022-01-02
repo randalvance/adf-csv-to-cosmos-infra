@@ -17,6 +17,7 @@ steps:
           --parameters environment=$(Environment) \
           --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment) \
           --parameters developerGroupObjectId=$(DeveloperGroupObjectId) \
+          --parameters applicationObjectId=$(ApplicationObjectId) \
           --parameters tenantId=$(TenantId) \
           --parameters applicationId=$(ApplicationId) \
           --parameters clientSecret=$(ClientSecret)

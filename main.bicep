@@ -6,6 +6,7 @@ param developerGroupObjectId string
 param tenantId string
 param applicationId string
 param clientSecret string
+param applicationObjectId string
 
 var projectName = 'adf-csv-to-cosmos'
 var deploymentName = deployment().name
@@ -73,7 +74,7 @@ module dataFactory './modules/datafactory.bicep' = {
   params: {
     dataFactoryName: dataFactoryName
     storageAccountName: storage.outputs.accountName
-    groupObjectId: developerGroupObjectId
+    applicationObjectId: applicationObjectId
     environment: environment
   }
 }

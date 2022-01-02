@@ -1,7 +1,7 @@
 targetScope = 'resourceGroup'
 
 param dataFactoryName string
-param groupObjectId string
+param applicationObjectId string
 param storageAccountName string
 param environment string
 
@@ -50,6 +50,6 @@ resource dataFactoryContributorRoleAssignment 'Microsoft.Authorization/roleAssig
   name: guid(factory.name, dataFactoryContributorRole.name, dataFactoryName)
   properties: {
     roleDefinitionId: dataFactoryContributorRole.id
-    principalId: groupObjectId
+    principalId: applicationObjectId
   }
 }
