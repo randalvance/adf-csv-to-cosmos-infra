@@ -46,6 +46,7 @@ module appservice './modules/app-service.bicep' = {
     appServicePlanName: '${projectName}-plan-${environment}'
     appServiceName: '${projectName}-${environment}'
     storageAccountName: storage.outputs.accountName
+    cosmosAccountName: cosmosDbAccountName
     subnetId: vnet.outputs.subnetId
     dataFactoryName: dataFactoryName
     tenantId: tenantId

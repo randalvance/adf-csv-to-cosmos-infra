@@ -3,6 +3,7 @@ targetScope = 'resourceGroup'
 param appServicePlanName string
 param appServiceName string
 param storageAccountName string
+param cosmosAccountName string
 param subnetId string
 param dataFactoryName string
 param tenantId string
@@ -59,6 +60,7 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
       AzureClientCredentials__ApplicationId: applicationId
       AzureClientCredentials__ClientSecret: clientSecret
       BlobStorageEndpoint: storage.properties.primaryEndpoints.blob
+      CosmosDbEndpoint: 'https://${cosmosAccountName}.documents.azure.com:443/'
     }
   }
 
