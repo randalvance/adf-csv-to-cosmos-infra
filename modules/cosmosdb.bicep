@@ -4,7 +4,7 @@ param accountName string
 
 var location = resourceGroup().location
 
-resource database 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
+resource account 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
   name: accountName
   location: location
   kind: 'GlobalDocumentDB'
@@ -15,5 +15,29 @@ resource database 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
         locationName: location
       }
     ]
+  }
+
+  resource database 'sqlDatabases' = {
+    name: 'awesomedb'
+    properties: {
+      resource: {
+        id: 'awesomedb'
+      }
+    }
+
+    resource container 'containers' = {
+      name: 'people'
+      properties: {
+        resource: {
+          id: 'people'
+          partitionKey: {
+            paths: [
+              '/id'
+            ]
+            kind: 'Hash'
+          }
+        }
+      }
+    }
   }
 }
