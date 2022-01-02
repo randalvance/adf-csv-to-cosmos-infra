@@ -46,7 +46,7 @@ resource storageBlobContributorRoleAssignment 'Microsoft.Authorization/roleAssig
 }
 
 resource dataFactoryContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-01-preview' = {
-  scope: storage
+  scope: factory
   name: guid(factory.name, dataFactoryContributorRole.name, dataFactoryName)
   properties: {
     roleDefinitionId: dataFactoryContributorRole.id
