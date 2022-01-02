@@ -17,4 +17,7 @@ resource factory 'Microsoft.DataFactory/factories@2018-06-01' = {
       rootFolder: 'datafactory'
     } : {}
   }
+  identity: {
+    type: 'SystemAssigned'
+  }
 }
