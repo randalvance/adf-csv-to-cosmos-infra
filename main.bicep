@@ -65,7 +65,7 @@ module dataFactory './modules/datafactory.bicep' = {
   params: {
     dataFactoryName: 'df-${projectName}-${environment}'
     storageAccountName: storage.outputs.accountName
-    adApplicationObjectId: adApplicationObjectId
+    adApplicationObjectId: developerGroupObjectId
     environment: environment
   }
 }
