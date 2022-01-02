@@ -59,7 +59,7 @@ resource storageBlobContributorRoleAssignment 'Microsoft.Authorization/roleAssig
 
 resource cosmosAdfDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
   parent: cosmosdbAccount
-  name: guid(cosmosDataContributorRoleName, dataFactoryName)
+  name: guid(cosmosDataContributorRoleName, dataFactoryName, 'adf')
   properties: {
     roleDefinitionId: cosmosDataContributorRole.id
     scope: cosmosdbAccount.id
@@ -69,7 +69,7 @@ resource cosmosAdfDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sq
 
 resource cosmosSpDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
   parent: cosmosdbAccount
-  name: guid(cosmosDataContributorRoleName, dataFactoryName)
+  name: guid(cosmosDataContributorRoleName, dataFactoryName, 'adApp')
   properties: {
     roleDefinitionId: cosmosDataContributorRole.id
     scope: cosmosdbAccount.id
