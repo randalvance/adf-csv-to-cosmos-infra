@@ -16,6 +16,9 @@ resource account 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
       }
     ]
   }
+  identity: {
+    type: 'SystemAssigned'
+  }
 
   resource database 'sqlDatabases' = {
     name: 'awesomedb'

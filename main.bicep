@@ -14,6 +14,7 @@ var deploymentName = deployment().name
 var location = deployment().location
 
 var dataFactoryName = 'df-${projectName}-${environment}'
+var cosmosDbAccountName = 'cdb-${projectName}-${environment}'
 
 resource resourceGroup 'Microsoft.Resources/resourceGroups@2021-04-01' = {
   name: resourceGroupName
@@ -58,7 +59,7 @@ module cosmosdb './modules/cosmosdb.bicep' = {
   name: '${deploymentName}-cosmos'
   scope: resourceGroup
   params: {
-    accountName: 'cdb-${projectName}-${environment}'
+    accountName: cosmosDbAccountName
   }
 }
 
@@ -75,6 +76,7 @@ module dataFactory './modules/datafactory.bicep' = {
   scope: resourceGroup
   params: {
     dataFactoryName: dataFactoryName
+    cosmosDbAccountName: cosmosDbAccountName
     storageAccountName: storage.outputs.accountName
     applicationObjectId: applicationObjectId
     environment: environment
