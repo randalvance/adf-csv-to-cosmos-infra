@@ -17,7 +17,7 @@ steps:
           --parameters environment=$(Environment) \
           --parameters resourceGroupName=rg-adf-csv-to-cosmos-$(Environment) \
           --parameters developerGroupObjectId=$(DeveloperGroupObjectId) \
-          --parameters xxx=$(ActiveDirectoryApplicationObjectId)
+          --parameters adApplicationObjectId=$(ActiveDirectoryApplicationObjectId)
   - task: AzureCLI@2
     displayName: Enable Static Website
     inputs:
