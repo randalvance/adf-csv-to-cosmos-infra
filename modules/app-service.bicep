@@ -13,12 +13,23 @@ param subscriptionId string
 
 var location = resourceGroup().location
 
+var cosmosDataContributorRoleName = '00000000-0000-0000-0000-000000000002'
+
+resource cosmosdbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' existing = {
+  name: cosmosAccountName
+}
+
 resource storage 'Microsoft.Storage/storageAccounts@2021-06-01' existing = {
   name: storageAccountName
 }
 
 resource storageBlobDataContributorRole 'Microsoft.Authorization/roleDefinitions@2018-01-01-preview' existing = {
   name: 'ba92f5b4-2d11-453d-a403-e96b0029c9fe' /* Guid for the Blob Contributor Role */
+}
+
+resource cosmosDataContributorRole 'Microsoft.DocumentDB/databaseAccounts/sqlRoleDefinitions@2021-04-15' existing = {
+  parent: cosmosdbAccount
+  name: cosmosDataContributorRoleName
 }
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
@@ -89,6 +100,16 @@ resource storageRoleAssignment 'Microsoft.Authorization/roleAssignments@2020-08-
   name: guid(storage.name, storageBlobDataContributorRole.name, appService.name)
   properties: {
     roleDefinitionId: storageBlobDataContributorRole.id
+    principalId: appService.identity.principalId
+  }
+}
+
+resource cosmosDataContributorGrant 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2021-04-15' = {
+  parent: cosmosdbAccount
+  name: guid(cosmosDataContributorRoleName, appServiceName)
+  properties: {
+    roleDefinitionId: cosmosDataContributorRole.id
+    scope: cosmosdbAccount.id
     principalId: appService.identity.principalId
   }
 }
