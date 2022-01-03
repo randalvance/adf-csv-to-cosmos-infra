@@ -83,4 +83,7 @@ module dataFactory './modules/datafactory.bicep' = {
     applicationObjectId: applicationObjectId
     environment: environment
   }
+  dependsOn: [
+    cosmosdb
+  ]
 }
