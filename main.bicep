@@ -39,6 +39,15 @@ module storage './modules/storage.bicep' = {
   }
 }
 
+module cosmosdb './modules/cosmosdb.bicep' = {
+  name: '${deploymentName}-cosmos'
+  scope: resourceGroup
+  params: {
+    accountName: cosmosDbAccountName
+    subnetId: vnet.outputs.subnetId
+  }
+}
+
 module appservice './modules/app-service.bicep' = {
   name: '${deploymentName}-appservice'
   scope: resourceGroup
@@ -54,15 +63,9 @@ module appservice './modules/app-service.bicep' = {
     clientSecret: clientSecret
     subscriptionId: subscriptionId
   }
-}
-
-module cosmosdb './modules/cosmosdb.bicep' = {
-  name: '${deploymentName}-cosmos'
-  scope: resourceGroup
-  params: {
-    accountName: cosmosDbAccountName
-    subnetId: vnet.outputs.subnetId
-  }
+  dependsOn: [
+    cosmosdb
+  ]
 }
 
 module staticWebsiteStorage './modules/static-website.bicep' = {
