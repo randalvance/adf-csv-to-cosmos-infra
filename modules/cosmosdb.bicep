@@ -52,12 +52,26 @@ resource account 'Microsoft.DocumentDB/databaseAccounts@2021-10-15' = {
       }
     }
 
-
     resource containerErrors 'containers' = {
       name: 'peopleErrors'
       properties: {
         resource: {
           id: 'peopleErrors'
+          partitionKey: {
+            paths: [
+              '/id'
+            ]
+            kind: 'Hash'
+          }
+        }
+      }
+    }
+
+    resource containerLookup 'containers' = {
+      name: 'countries'
+      properties: {
+        resource: {
+          id: 'countries'
           partitionKey: {
             paths: [
               '/id'
