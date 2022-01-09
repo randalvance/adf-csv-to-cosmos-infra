@@ -90,3 +90,12 @@ module dataFactory './modules/datafactory.bicep' = {
     cosmosdb
   ]
 }
+
+module keyvault './modules/key-vault.bicep' = {
+  name: '${deploymentName}-keyvault'
+  scope: resourceGroup
+  params: {
+    vaultName: 'kv-${projectName}'
+    tenantId: tenantId
+  }
+}
