@@ -1,7 +1,7 @@
 targetScope = 'resourceGroup'
 
 param accountName string
-param subnetId string
+// param subnetId string
 
 var location = resourceGroup().location
 
